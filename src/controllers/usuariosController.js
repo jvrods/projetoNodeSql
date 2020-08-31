@@ -1,3 +1,6 @@
+const usuarioRoutes = require('../routes/usuarioRoutes')
+
+const Usuario = require('../models').Usuario
 
 exports.listAll = (req,res) =>{
     let usuarios = [
@@ -14,9 +17,16 @@ exports.listAll = (req,res) =>{
 }
 
 exports.createOne = (req,res) =>{
-    let response = {
-        mmessage: 'Usuario criado com sucesso',
-        data: req.body
-    }
-    res.send (response)
+
+    console.log(Usuario)
+    const{nome,email} = req.body
+    Usuario.create({nome,email}).then(usuario => {
+
+
+        res.send (usuario)
+    }).catch(error=>{
+        res.send(error)
+    })
+
+    
 }
