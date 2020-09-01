@@ -3,17 +3,11 @@ const usuarioRoutes = require('../routes/usuarioRoutes')
 const Usuario = require('../models').Usuario
 
 exports.listAll = (req,res) =>{
-    let usuarios = [
-        {
-            nome: 'teste01',
-            email:'teste@123.com'
-        },
-        {
-            nome: 'teste01',
-            email:'teste@123.com'
-        }
-    ]
-    res.send(usuarios)
+    Usuario.findAll({}).then(usuarios =>{
+        res.send(usuarios)
+    }).catch(error =>{
+        
+    })
 }
 
 exports.createOne = (req,res) =>{
